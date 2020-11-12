@@ -1,0 +1,56 @@
+﻿@model List<Plan>
+@using Stripe;
+@using System.Configuration;
+@{
+    ViewBag.Title = "Index";
+}
+@foreach (var item in Model)
+{
+    <form action="/Stripe/Charge" method="POST">
+        <article>
+            <label>
+                Amount: @item.AmountDecimal<br />
+                Buy @item.Nickname
+            </label>
+        </article>
+        <script src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="@ConfigurationManager.AppSettings["stripePublishableKey"]"
+                data-locale="auto"
+                data-description="@item.Nickname"
+                data-amount="@item.Amount"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-zip-code="true"
+                >
+        </script>
+        <br />
+    </form>
+}
+@*<article>
+        <label>
+            Amount: $5.00<br />
+            Buy
+        </label>
+    </article>
+    <script src="//checkout.stripe.com/v2/checkout.js"
+            class="stripe-button"
+            data-key="pk_test_...."
+            data-locale="auto"
+            data-description="Sample Charge"
+            data-amount="500">
+    </script>
+
+    <article>
+        <label>
+            Amount: $29.00 <br />
+            Pro Subscription
+        </label>
+    </article>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_..."
+            data-description="Pro Subscription ($29 per month)"
+            data-panel-label="Subscribe"
+            data-label="Subscribe"
+            data-amount="2900">
+    </script>*@
+
