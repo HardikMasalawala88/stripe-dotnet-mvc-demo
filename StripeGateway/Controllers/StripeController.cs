@@ -13,6 +13,7 @@ namespace StripeGateway.Controllers
     {
         public StripeController()
         {
+
             Stripe.StripeConfiguration.SetApiKey(ConfigurationManager.AppSettings["stripePublishableKey"]);
             Stripe.StripeConfiguration.ApiKey = ConfigurationManager.AppSettings["stripeSecretkey"];
         }
